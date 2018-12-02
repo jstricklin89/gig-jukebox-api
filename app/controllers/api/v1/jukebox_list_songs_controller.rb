@@ -16,8 +16,7 @@ class Api::V1::JukeboxListSongsController < ApplicationController
   # POST /jukebox_list_songs
   def create
     @jukebox_list_song = JukeboxListSong.find_or_create_by(jukebox_list_song_params)
-
-    render json: @jukebox_list_song, status: :created, location: @jukebox_list_song
+    render json: @jukebox_list_song
   end
 
   # PATCH/PUT /jukebox_list_songs/1
@@ -31,6 +30,8 @@ class Api::V1::JukeboxListSongsController < ApplicationController
 
   # DELETE /jukebox_list_songs/1
   def destroy
+    @jukebox_list_song = JukeboxListSong.find_by(jukebox_list_song_params)
+
     @jukebox_list_song.destroy
   end
 
