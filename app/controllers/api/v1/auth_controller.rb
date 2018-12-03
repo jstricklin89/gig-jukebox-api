@@ -4,6 +4,7 @@ class Api::V1::AuthController < ApplicationController
   def create
     @user = User.find_by(username: user_login_params[:username])
     #User#authenticate comes from BCrypt
+    # byebug
     if @user && @user.authenticate(user_login_params[:password])
       # encode token comes from ApplicationController
       token = encode_token({ user_id: @user.id })
